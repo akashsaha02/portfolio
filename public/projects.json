@@ -1,0 +1,50 @@
+[
+    {
+        "id": "wintersoul",
+        "title": "WinterSoul",
+        "description": "WinterSoul is a social initiative website designed to facilitate the donation of winter clothing to those in need. The platform allows users to donate their old clothes, browse through donations available in their locality, and receive or contribute items to people affected by cold weather. The system connects local communities and encourages altruism during harsh winter seasons. It uses a modern tech stack to ensure seamless user experience and real-time updates for donors and recipients.",
+        "link": "https://assignment-09-8a172.web.app/",
+        "repoLink": "https://github.com/akashsaha02/wintersoul",
+        "image": "/wintersoul.png",
+        "techStack": [
+            "React",
+            "Express",
+            "Tailwind",
+            "MongoDB",
+            "Node.js",
+            "Firebase"
+        ]
+    },
+    {
+        "id": "blugadgets",
+        "title": "Blu Gadgets",
+        "description": "Blu Gadgets is a frontend-focused e-commerce website built for showcasing electronic gadgets. It includes features such as product browsing, filtering, detailed product pages, and an easy-to-use shopping cart. The website leverages Tailwind for responsive design, providing an optimized experience for mobile and desktop users. It integrates with a Node.js backend to manage user data, product inventory, and shopping history, while ensuring a smooth and responsive shopping experience.",
+        "link": "https://blugadgets-akashsaha02.netlify.app/",
+        "repoLink": "https://github.com/akashsaha02/blu-gadgets",
+        "image": "/blu.png",
+        "techStack": [
+            "React",
+            "Express",
+            "Tailwind",
+            "MongoDB",
+            "Node.js",
+            "Firebase"
+        ]
+    },
+    {
+        "id": "crowdhex",
+        "title": "CrowdHex",
+        "description": "CrowdHex is a crowdfunding platform that allows users to create campaigns and contribute to projects that matter. Whether it's funding a social cause, supporting a startup, or backing community initiatives, CrowdHex provides a platform for raising funds from the public. It includes features like user authentication, campaign creation, donation tracking, and campaign promotion. The app is built with modern tools and frameworks to ensure scalability and security, allowing projects to thrive through community support.",
+        "link": "https://crowdhex.web.app",
+        "repoLink": "https://github.com/akashsaha02/crowdhex-frontend",
+        "image": "/crowdhex.png",
+        "techStack": [
+            "React",
+            "Express",
+            "Tailwind",
+            "MongoDB",
+            "Node.js",
+            "Firebase"
+        ]
+    }
+]

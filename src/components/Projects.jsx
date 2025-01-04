@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 // Project Card Component
-const ProjectCard = ({ title, description, link, repoLink, image }) => (
+const ProjectCard = ({id, title, description, link, repoLink, image }) => (
   <div className="p-6 bg-gray-100 dark:bg-gray-800 rounded-lg shadow-md hover:shadow-xl transition">
     <div className="mb-4">
       {image && <img src={image} alt={title} className="w-full h-48 object-cover rounded-md" />}
@@ -29,11 +30,29 @@ const ProjectCard = ({ title, description, link, repoLink, image }) => (
           GitHub Repo
         </a>
       )}
+      <Link
+        to={`/project/${id}`}
+        className="text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-200">
+        View Details
+        </Link>
     </div>
   </div>
 );
 
 const Projects = () => {
+  const [projects, setProjects] = useState([]);
+
+  useEffect(() => {
+    // Simulating a fetch request to load the JSON data (e.g., from a local file or API)
+    const loadProjects = async () => {
+      const response = await fetch('./projects.json'); // Replace with the actual path
+      const data = await response.json();
+      setProjects(data);
+    };
+
+    loadProjects();
+  }, []);
+
   return (
     <div id="projects" className="bg-light-background dark:bg-dark-background text-light-text dark:text-dark-text py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -44,31 +63,17 @@ const Projects = () => {
 
         {/* Projects Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
-          {/* Project 1 */}
-          <ProjectCard
-            title="Personal Portfolio"
-            description="A personal portfolio website to showcase my web development skills, projects, and achievements."
-            link="https://example.com" // Replace with actual link
-            repoLink="https://github.com/yourusername/portfolio" // Replace with actual GitHub repo link
-            image="https://via.placeholder.com/400" // Replace with actual image
-          />
-          {/* Project 2 */}
-          <ProjectCard
-            title="E-commerce Platform"
-            description="A fully functional e-commerce website with product catalog, shopping cart, and payment integration."
-            link="https://example.com" // Replace with actual link
-            repoLink="https://github.com/yourusername/e-commerce" // Replace with actual GitHub repo link
-            image="https://via.placeholder.com/400" // Replace with actual image
-          />
-          {/* Project 3 */}
-          <ProjectCard
-            title="Weather App"
-            description="A weather app that fetches data from a weather API and displays the current weather in your city."
-            link="https://example.com" // Replace with actual link
-            repoLink="https://github.com/yourusername/weather-app" // Replace with actual GitHub repo link
-            image="https://via.placeholder.com/400" // Replace with actual image
-          />
-          {/* Add more projects here */}
+          {projects.map((project, index) => (
+            <ProjectCard
+              id={project.id}
+              key={index}
+              title={project.title}
+              description={project.description}
+              link={project.link}
+              repoLink={project.repoLink}
+              image={project.image}
+            />
+          ))}
         </div>
       </div>
     </div>

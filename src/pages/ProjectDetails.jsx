@@ -18,7 +18,7 @@ const ProjectDetails = () => {
 
   if (!project) {
     return (
-      <div className="text-center py-20 min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-700 dark:text-gray-300">
+      <div className="text-center py-12 md:py-20 min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-700 dark:text-gray-300">
         <p className="text-lg font-semibold">Loading Project Details...</p>
       </div>
     );

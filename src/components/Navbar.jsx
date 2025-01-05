@@ -96,7 +96,7 @@ const Navbar = () => {
               </Link>
             </li>
             <li>
-              <a href="/resume.pdf" className="hover:text-indigo-600 dark:hover:text-indigo-400">
+              <a href="/resume.pdf" className="hover:text-indigo-600 dark:hover:text-indigo-400 border border-indigo-600 dark:border-indigo-400 px-4 py-2 rounded-full">
                 Download Resume
               </a>
             </li>
@@ -113,7 +113,7 @@ const Navbar = () => {
         <div
           className={`lg:hidden ${isMenuOpen ? "block " : "hidden"}`}
         >
-          <ul className="menu absolute z-50 right-[5%] border border-black top-16 menu-vertical p-2 space-y-2 bg-base-100 dark:bg-base-200 text-gray-700 dark:text-gray-100">
+          <ul className="menu absolute z-50 right-0 border border-black top-20 menu-vertical p-2 space-y-2 bg-base-100 dark:bg-gray-700 backdrop:blur-lg rounded text-gray-700 dark:text-gray-100 w-50">
             <li>
               <LinkRouter
                 to="/"
@@ -163,6 +163,11 @@ const Navbar = () => {
               >
                 Contact
               </Link>
+            </li>
+            <li>
+              <a href="/resume.pdf" className="hover:text-indigo-600 dark:hover:text-indigo-400 border border-indigo-600 dark:border-indigo-400 px-4 py-2 rounded-full">
+                Download Resume
+              </a>
             </li>
           </ul>
         </div>

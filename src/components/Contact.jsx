@@ -51,7 +51,7 @@ const ContactInformation = () => {
   return (
     <div
       id="contact-info"
-      className="bg-light-background dark:bg-dark-background text-light-text dark:text-dark-text py-20"
+      className="bg-light-background dark:bg-dark-background text-light-text dark:text-dark-text py-12 md:py-20 "
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Title */}
@@ -60,7 +60,7 @@ const ContactInformation = () => {
         </h2>
 
         {/* Contact Details */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mt-12">
           {/* Email Contact */}
           <div className="p-6 bg-gray-100 dark:bg-gray-800 rounded-lg shadow-md hover:shadow-xl transition flex flex-col justify-center items-center">
             <div className="space-y-6">

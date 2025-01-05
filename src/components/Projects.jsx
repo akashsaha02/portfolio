@@ -54,7 +54,7 @@ const Projects = () => {
   }, []);
 
   return (
-    <div id="projects" className="bg-light-background dark:bg-dark-background text-light-text dark:text-dark-text py-20">
+    <div id="projects" className="bg-light-background dark:bg-dark-background text-light-text dark:text-dark-text py-12 md:py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Title */}
         <h2 className="text-3xl sm:text-4xl font-bold text-center text-primary dark:text-dark-primary mb-10">

@@ -96,7 +96,7 @@ const Navbar = () => {
               </Link>
             </li>
             <li>
-              <a href="/resume.pdf" className="hover:text-indigo-600 dark:hover:text-indigo-400 border border-indigo-600 dark:border-indigo-400 px-4 py-2 rounded-full">
+              <a href="/Akash-Saha-Resume.pdf" download className="hover:text-indigo-600 dark:hover:text-indigo-400 border border-indigo-600 dark:border-indigo-400 px-4 py-2 rounded-full">
                 Download Resume
               </a>
             </li>
@@ -165,7 +165,7 @@ const Navbar = () => {
               </Link>
             </li>
             <li>
-              <a href="/resume.pdf" className="hover:text-indigo-600 dark:hover:text-indigo-400 border border-indigo-600 dark:border-indigo-400 px-4 py-2 rounded-full">
+              <a href="/Akash-Saha-Resume.pdf" download className="hover:text-indigo-600 dark:hover:text-indigo-400 border border-indigo-600 dark:border-indigo-400 px-4 py-2 rounded-full">
                 Download Resume
               </a>
             </li>

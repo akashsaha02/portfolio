@@ -8,14 +8,14 @@ const ProjectCard = ({id, title, description, link, repoLink, image }) => (
       {image && <img src={image} alt={title} className="w-full h-48 object-cover rounded-md" />}
     </div>
     <h4 className="text-xl font-semibold text-indigo-600 dark:text-indigo-400 mb-2">{title}</h4>
-    <p className="text-sm text-gray-600 dark:text-gray-300 mb-4">{description}</p>
+    <p className="text-sm text-gray-600 dark:text-gray-300 mb-4 line-clamp-3">{description}</p>
     <div className="flex gap-4">
       {link && (
         <a
           href={link}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-200"
+          className="text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-200 hover:underline"
         >
           Live Demo
         </a>
@@ -25,14 +25,14 @@ const ProjectCard = ({id, title, description, link, repoLink, image }) => (
           href={repoLink}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-200"
+          className="text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-200 hover:underline"
         >
           GitHub Repo
         </a>
       )}
       <Link
         to={`/project/${id}`}
-        className="text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-200">
+        className="text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-200 hover:underline">
         View Details
         </Link>
     </div>
@@ -64,15 +64,17 @@ const Projects = () => {
         {/* Projects Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
           {projects.map((project, index) => (
+           <Link key={project.id} to={`/project/${project.id}`} >
             <ProjectCard
-              id={project.id}
               key={index}
+              id={project.id}
               title={project.title}
               description={project.description}
               link={project.link}
               repoLink={project.repoLink}
               image={project.image}
             />
+           </Link>
           ))}
         </div>
       </div>

@@ -28,14 +28,14 @@ const ProjectDetails = () => {
     <div className="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-300 py-10 min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Project Title */}
-        <h1 className="text-4xl sm:text-5xl font-bold text-center text-indigo-600 dark:text-indigo-400 mb-8">
+        <h1 className="text-3xl sm:text-4xl font-bold text-center text-indigo-600 dark:text-indigo-400 mb-8">
           {project.title}
         </h1>
 
         {/* Project Info */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Project Image */}
-          <div className="flex justify-center items-center">
+          <div className="flex justify-center ">
             <img
               src={project.image || 'https://via.placeholder.com/400'}
               alt={project.title}
@@ -49,7 +49,7 @@ const ProjectDetails = () => {
               <h2 className="text-2xl font-semibold text-indigo-600 dark:text-indigo-400">
                 Project Description
               </h2>
-              <p className="text-lg leading-7 mt-2">
+              <p className="text-lg mt-2 text-justify">
                 {project.description}
               </p>
             </div>

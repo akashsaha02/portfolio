@@ -1,6 +1,10 @@
-import React, { useState } from "react";
-import { FaEnvelope, FaPhoneAlt, FaWhatsapp } from "react-icons/fa";
+import { useState } from "react";
+import { FaEnvelope, FaPhoneAlt, FaMapMarkerAlt } from "react-icons/fa";
 import emailjs from "emailjs-com";
+
+const serviceID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+const templateID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
 const ContactInformation = () => {
   const [formData, setFormData] = useState({
@@ -19,28 +23,29 @@ const ContactInformation = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    emailjs
-      .send(
-        "your_service_id", // Replace with your EmailJS service ID
-        "your_template_id", // Replace with your EmailJS template ID
-        formData,
-        "your_user_id" // Replace with your EmailJS user ID
-      )
-      .then(
-        (response) => {
-          setStatusMessage("Message sent successfully!");
-          setFormData({
-            name: "",
-            email: "",
-            message: "",
-          });
+    setStatusMessage("");
+
+    try {
+      const result = await emailjs.send(
+        serviceID, // Service ID
+        templateID, // Template ID
+        {
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
         },
-        (error) => {
-          setStatusMessage("Error sending message. Please try again.");
-        }
+        publicKey // Public Key
       );
+
+      console.log("Email sent successfully:", result.text);
+      setStatusMessage("Message sent successfully!");
+      setFormData({ name: "", email: "", message: "" });
+    } catch (error) {
+      console.error("Error sending email:", error);
+      setStatusMessage("Failed to send email. Please try again later.");
+    }
   };
 
   return (
@@ -55,110 +60,118 @@ const ContactInformation = () => {
         </h2>
 
         {/* Contact Details */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Email Contact */}
-          <div className="p-6 bg-gray-100 dark:bg-gray-800 rounded-lg shadow-md hover:shadow-xl transition">
-            <div className="flex items-center mb-4">
-              <FaEnvelope size={24} className="text-indigo-600 dark:text-indigo-400 mr-4" />
-              <h4 className="text-lg font-semibold text-indigo-600 dark:text-indigo-400">Email</h4>
+          <div className="p-6 bg-gray-100 dark:bg-gray-800 rounded-lg shadow-md hover:shadow-xl transition flex flex-col justify-center items-center">
+            <div className="space-y-6">
+              <div className="">
+                <div className="flex items-center mb-4">
+                  <FaEnvelope size={24} className="text-indigo-600 dark:text-indigo-400 mr-4" />
+                  <h4 className="text-lg font-semibold text-indigo-600 dark:text-indigo-400">Email</h4>
+                </div>
+                <p className="text-sm text-gray-600 dark:text-gray-300">
+                  Feel free to reach us via email at:
+                </p>
+                <a href="mailto:akashsaha1313@gmail.com" className="text-indigo-600 dark:text-indigo-400 hover:underline">
+                  akashsaha1313@gmail.com
+                </a>
+              </div>
+
+              <div className="">
+                <div className="flex items-center mb-2">
+                  <FaPhoneAlt size={24} className="text-indigo-600 dark:text-indigo-400 mr-4" />
+                  <h4 className="text-lg font-semibold text-indigo-600 dark:text-indigo-400">Phone</h4>
+                </div>
+                <p className="text-sm text-gray-600 dark:text-gray-300">You can also call us at:</p>
+                <a href="tel:+8801748174056" className="text-indigo-600 dark:text-indigo-400 hover:underline">
+                  +8801748174056
+                </a>
+              </div>
+
+              <div className="">
+                <div className="flex items-center mb-2">
+                  <FaMapMarkerAlt size={24} className="text-indigo-600 dark:text-indigo-400 mr-4" />
+                  <h4 className="text-lg font-semibold text-indigo-600 dark:text-indigo-400">Location</h4>
+                </div>
+                <p className="text-sm text-gray-600 dark:text-gray-300">My current location</p>
+                <a
+                  href="https://wa.me/1234567890"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-indigo-600 dark:text-indigo-400 hover:underline"
+                >
+                  Dhaka, Bangladesh
+                </a>
+              </div>
             </div>
-            <p className="text-sm text-gray-600 dark:text-gray-300">
-              Feel free to reach me via email at:
-            </p>
-            <a href="mailto:akash.saha@example.com" className="text-indigo-600 dark:text-indigo-400 hover:underline">
-              akash.saha@example.com
-            </a>
+
           </div>
 
-          {/* Phone Contact */}
-          <div className="p-6 bg-gray-100 dark:bg-gray-800 rounded-lg shadow-md hover:shadow-xl transition">
-            <div className="flex items-center mb-4">
-              <FaPhoneAlt size={24} className="text-indigo-600 dark:text-indigo-400 mr-4" />
-              <h4 className="text-lg font-semibold text-indigo-600 dark:text-indigo-400">Phone</h4>
-            </div>
-            <p className="text-sm text-gray-600 dark:text-gray-300">You can also call me at:</p>
-            <a href="tel:+1234567890" className="text-indigo-600 dark:text-indigo-400 hover:underline">
-              +1 (234) 567-890
-            </a>
+          {/* Contact Form */}
+          <div className="">
+            <h3 className="text-xl font-semibold text-indigo-600 dark:text-indigo-400 mb-4">
+              Send Me a Message
+            </h3>
+            {statusMessage && (
+              <p className="text-center text-green-500 dark:text-green-300 mb-4">{statusMessage}</p>
+            )}
+            <form onSubmit={handleSubmit} className=" mx-auto space-y-4">
+              <div>
+                <label htmlFor="name" className="block  font-semibold dark:text-gray-200">
+                  Name
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                  className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="email" className="block font-semibold dark:text-gray-200">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                  className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200"
+                />
+              </div>
+
+              <div>
+                <label htmlFor="message" className="block font-semibold dark:text-gray-200">
+                  Message
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  required
+                  rows="4"
+                  className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200"
+                ></textarea>
+              </div>
+
+              <button
+                type="submit"
+                className="w-full bg-indigo-600 text-white py-3 rounded-md hover:bg-indigo-700 transition"
+              >
+                Send Message
+              </button>
+            </form>
           </div>
-
-          {/* WhatsApp Contact */}
-          <div className="p-6 bg-gray-100 dark:bg-gray-800 rounded-lg shadow-md hover:shadow-xl transition">
-            <div className="flex items-center mb-4">
-              <FaWhatsapp size={24} className="text-indigo-600 dark:text-indigo-400 mr-4" />
-              <h4 className="text-lg font-semibold text-indigo-600 dark:text-indigo-400">WhatsApp</h4>
-            </div>
-            <p className="text-sm text-gray-600 dark:text-gray-300">You can also reach me on WhatsApp:</p>
-            <a href="https://wa.me/1234567890" className="text-indigo-600 dark:text-indigo-400 hover:underline">
-              +1 (234) 567-890
-            </a>
-          </div>
-        </div>
-
-        {/* Contact Form */}
-        <div className="mt-12">
-          <h3 className="text-xl font-semibold text-center text-indigo-600 dark:text-indigo-400 mb-4">
-            Or Send Me a Message
-          </h3>
-          {statusMessage && (
-            <p className="text-center text-green-500 dark:text-green-300 mb-4">{statusMessage}</p>
-          )}
-          <form onSubmit={handleSubmit} className="max-w-lg mx-auto space-y-6">
-            <div>
-              <label htmlFor="name" className="block text-lg font-semibold dark:text-gray-200">
-                Name
-              </label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                required
-                className="w-full p-3 mt-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200"
-              />
-            </div>
-
-            <div>
-              <label htmlFor="email" className="block text-lg font-semibold dark:text-gray-200">
-                Email
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                required
-                className="w-full p-3 mt-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200"
-              />
-            </div>
-
-            <div>
-              <label htmlFor="message" className="block text-lg font-semibold dark:text-gray-200">
-                Message
-              </label>
-              <textarea
-                id="message"
-                name="message"
-                value={formData.message}
-                onChange={handleChange}
-                required
-                rows="4"
-                className="w-full p-3 mt-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200"
-              ></textarea>
-            </div>
-
-            <button
-              type="submit"
-              className="w-full bg-indigo-600 text-white py-3 rounded-md hover:bg-indigo-700 transition"
-            >
-              Send Message
-            </button>
-          </form>
         </div>
       </div>
-    </div>
+    </div >
   );
 };
 

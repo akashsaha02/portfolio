@@ -55,7 +55,7 @@ const skillsData = [
   {
     skill: "Node.js",
     percentage: 70,
-    image: "https://upload.wikimedia.org/wikipedia/commons/9/93/MongoDB_Logo.svg"
+    image: "https://upload.wikimedia.org/wikipedia/commons/6/67/NodeJS.png"
   },
   {
     skill: "Firebase",

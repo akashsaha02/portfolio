@@ -54,6 +54,17 @@ const ProjectDetails = () => {
               </p>
             </div>
 
+            <div>
+              <h2 className="text-2xl font-semibold text-indigo-600 dark:text-indigo-400">
+                Challaenges Faced
+              </h2>
+              <p className="text-lg mt-2 text-justify">
+                {project.challengesFaced}
+              </p>
+            </div>
+
+            
+
             {/* Tech Stack */}
             <div>
               <h3 className="text-xl font-semibold text-indigo-600 dark:text-indigo-400">
